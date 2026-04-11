@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maximise360 — Premium Hotel Revenue Partners</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --charcoal: #0e0e0e;
+    --charcoal2: #161616;
+    --charcoal3: #1f1f1f;
+    --platinum: #d4d4d4;
+    --platinum-bright: #efefef;
+    --gold: #b89a5e;
+    --gold-light: #d4b97a;
+    --white: #f8f6f2;
+    --muted: rgba(212,212,212,0.45);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Outfit', sans-serif; background: var(--charcoal); color: var(--platinum); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.6rem 5vw;
+    background: rgba(14,14,14,0.9); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(184,154,94,0.15); transition: all 0.4s;
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.4rem; letter-spacing: 0.12em; color: var(--white); text-decoration: none; text-transform: uppercase; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+  .nav-links a { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--platinum-bright); }
+  .nav-cta { border: 1px solid rgba(184,154,94,0.5); color: var(--gold); padding: 0.6rem 1.6rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+  .nav-cta:hover { background: var(--gold); color: var(--charcoal); }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 10rem 5vw 6rem; position: relative; overflow: hidden; }
+  .hero-line { position: absolute; top: 0; bottom: 0; left: 5vw; width: 1px; background: linear-gradient(to bottom, transparent, rgba(184,154,94,0.3), transparent); }
+  .hero-line2 { position: absolute; top: 0; bottom: 0; right: 5vw; width: 1px; background: linear-gradient(to bottom, transparent, rgba(184,154,94,0.15), transparent); }
+  .hero-glow { position: absolute; bottom: -30%; left: -10%; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(184,154,94,0.06) 0%, transparent 70%); pointer-events: none; }
+  .hero-content { position: relative; z-index: 1; max-width: 820px; padding-left: 3vw; }
+  .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; animation: fadeUp 0.8s ease both; }
+  .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+  .hero-eyebrow span { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 7vw, 7rem); font-weight: 500; line-height: 1.02; letter-spacing: -0.01em; color: var(--white); animation: fadeUp 0.8s 0.1s ease both; }
+  h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { margin-top: 2.2rem; font-size: clamp(0.95rem, 1.4vw, 1.1rem); font-weight: 300; color: rgba(212,212,212,0.65); max-width: 520px; line-height: 1.85; animation: fadeUp 0.8s 0.2s ease both; }
+  .hero-actions { margin-top: 3.5rem; display: flex; gap: 1.4rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.3s ease both; }
+  .btn-primary { background: var(--gold); color: var(--charcoal); padding: 1rem 2.6rem; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid rgba(212,212,212,0.25); color: var(--platinum); padding: 1rem 2.6rem; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+  .btn-ghost:hover { border-color: var(--platinum); transform: translateY(-2px); }
+  .hero-stats { margin-top: 6rem; display: flex; gap: 5rem; flex-wrap: wrap; border-top: 1px solid rgba(184,154,94,0.15); padding-top: 3rem; animation: fadeUp 0.8s 0.4s ease both; }
+  .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 500; color: var(--white); line-height: 1; }
+  .stat-val span { color: var(--gold); }
+  .stat-label { font-size: 0.7rem; font-weight: 500; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 0.5rem; }
+
+  /* SHARED SECTION ELEMENTS */
+  .section-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+  .section-eyebrow-line { width: 30px; height: 1px; background: var(--gold); flex-shrink: 0; }
+  .section-eyebrow span { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 500; line-height: 1.1; color: var(--white); letter-spacing: -0.01em; }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* PHILOSOPHY */
+  #philosophy { padding: 8rem 5vw; background: var(--charcoal2); border-top: 1px solid rgba(184,154,94,0.1); border-bottom: 1px solid rgba(184,154,94,0.1); }
+  .philosophy-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 8rem; align-items: center; }
+  .philosophy-right { display: flex; flex-direction: column; gap: 2rem; }
+  .philosophy-item { padding: 2rem 2.2rem; border-left: 1px solid rgba(184,154,94,0.25); transition: border-color 0.3s; }
+  .philosophy-item:hover { border-color: var(--gold); }
+  .philosophy-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--white); margin-bottom: 0.6rem; }
+  .philosophy-item p { font-size: 0.92rem; font-weight: 300; color: rgba(212,212,212,0.6); line-height: 1.8; }
+
+  /* SERVICES */
+  #services { padding: 8rem 5vw; background: var(--charcoal); }
+  .services-header { margin-bottom: 5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1px; background: rgba(184,154,94,0.1); }
+  .service-card { background: var(--charcoal); padding: 3rem 2.8rem; position: relative; overflow: hidden; transition: background 0.4s; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, rgba(184,154,94,0.4), transparent); transform: scaleX(0); transform-origin: center; transition: transform 0.4s ease; }
+  .service-card:hover { background: var(--charcoal2); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 400; color: rgba(184,154,94,0.1); line-height: 1; margin-bottom: 1.5rem; }
+  .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; color: var(--white); margin-bottom: 1rem; }
+  .service-card p { font-size: 0.9rem; font-weight: 300; color: rgba(212,212,212,0.58); line-height: 1.85; }
+  .service-tag { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.8rem; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+  .service-tag::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+
+  /* ABOUT */
+  #about { padding: 8rem 5vw; background: var(--charcoal2); border-top: 1px solid rgba(184,154,94,0.1); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; }
+  .about-quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 12rem; font-weight: 400; color: rgba(184,154,94,0.08); line-height: 0.8; margin-bottom: -2rem; display: block; }
+  .about-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 500; color: var(--white); line-height: 1.2; margin-top: 1rem; }
+  .about-title em { font-style: italic; color: var(--gold); }
+  .about-body { margin-top: 2rem; font-size: 0.95rem; font-weight: 300; color: rgba(212,212,212,0.65); line-height: 1.9; }
+  .about-body p + p { margin-top: 1.2rem; }
+  .about-divider { width: 40px; height: 1px; background: var(--gold); margin: 2rem 0; }
+  .about-right { display: flex; flex-direction: column; }
+  .about-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-bottom: 1px solid rgba(184,154,94,0.12); }
+  .about-stat-row:first-child { border-top: 1px solid rgba(184,154,94,0.12); }
+  .about-stat-label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .about-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 500; color: var(--white); }
+  .about-stat-val span { color: var(--gold); font-size: 1.4rem; }
+
+  /* RESULTS */
+  #results { padding: 8rem 5vw; background: var(--charcoal); }
+  .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2px; margin-top: 5rem; background: rgba(184,154,94,0.08); }
+  .result-card { background: var(--charcoal); padding: 2.8rem; transition: background 0.3s; }
+  .result-card:hover { background: var(--charcoal2); }
+  .result-location { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+  .result-location::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+  .result-hotel { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--white); margin-bottom: 2rem; line-height: 1.2; }
+  .result-metrics { display: flex; gap: 2.5rem; margin-bottom: 1.8rem; }
+  .metric-val { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 500; color: var(--gold); line-height: 1; }
+  .metric-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
+  .result-desc { font-size: 0.88rem; font-weight: 300; color: rgba(212,212,212,0.55); line-height: 1.85; }
+
+  /* CONTACT */
+  #contact { padding: 8rem 5vw; background: var(--charcoal2); border-top: 1px solid rgba(184,154,94,0.1); }
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 8rem; align-items: start; }
+  .contact-info-text { margin-top: 1.6rem; font-size: 0.95rem; font-weight: 300; color: rgba(212,212,212,0.6); line-height: 1.85; }
+  .contact-details { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.4rem; }
+  .contact-item { display: flex; gap: 1.2rem; align-items: center; }
+  .contact-item-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .contact-item span { font-size: 0.88rem; font-weight: 400; color: rgba(212,212,212,0.7); letter-spacing: 0.04em; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.4rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.6rem; }
+  .form-group label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(212,212,212,0.4); }
+  .form-group input, .form-group select, .form-group textarea { background: transparent; border: none; border-bottom: 1px solid rgba(184,154,94,0.25); padding: 0.9rem 0; color: var(--platinum-bright); font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 300; outline: none; transition: border-color 0.3s; width: 100%; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select option { background: #1a1a1a; }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-submit { background: transparent; color: var(--gold); border: 1px solid rgba(184,154,94,0.5); padding: 1.1rem 2.8rem; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; transition: all 0.3s; align-self: flex-start; margin-top: 0.5rem; }
+  .form-submit:hover { background: var(--gold); color: var(--charcoal); }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); padding: 3rem 5vw; border-top: 1px solid rgba(184,154,94,0.12); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: 0.75rem; font-weight: 300; color: rgba(212,212,212,0.3); letter-spacing: 0.05em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .philosophy-inner, .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">MAXIMISE<span>360</span></a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Enquire Now</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-line"></div>
+  <div class="hero-line2"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>End-to-End Online Revenue Management</span>
+    </div>
+    <h1>You Run the Hotel.<br>We Handle<br><em>Everything Online.</em></h1>
+    <p class="hero-sub">Maximise360 takes complete ownership of your hotel's online revenue — from distribution and pricing to marketing and reputation — so you can focus entirely on delivering exceptional guest experiences on the ground.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#contact">Begin the Conversation</a>
+      <a class="btn-ghost" href="#services">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">3.8<span>x</span></div><div class="stat-label">Average Revenue Growth</div></div>
+      <div><div class="stat-val">40<span>+</span></div><div class="stat-label">Hotel Partners</div></div>
+      <div><div class="stat-val">18<span>+</span></div><div class="stat-label">Distribution Channels</div></div>
+      <div><div class="stat-val">100<span>%</span></div><div class="stat-label">Client Retention</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="philosophy-inner reveal">
+    <div>
+      <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Our Philosophy</span></div>
+      <h2 class="section-title">Why Hotels Need a<br>Dedicated Online<br><em>Partner</em></h2>
+    </div>
+    <div class="philosophy-right">
+      <div class="philosophy-item">
+        <h3>Your Time Is Best Spent on the Ground</h3>
+        <p>Running a great hotel demands your full attention. Managing OTAs, pricing strategies, digital campaigns, and reputation across dozens of platforms is a full-time job in itself — one we take entirely off your plate.</p>
+      </div>
+      <div class="philosophy-item">
+        <h3>Every Channel Reflects Your Brand</h3>
+        <p>From OTA presentation to GDS listings, your property's story must be told consistently and compellingly across every touchpoint — we ensure it always is.</p>
+      </div>
+      <div class="philosophy-item">
+        <h3>Data-Driven, Relationship-Led</h3>
+        <p>We combine market intelligence and demand forecasting with the kind of personalised attention that drives real, sustainable results for your property.</p>
+      </div>
+      <div class="philosophy-item">
+        <h3>One Partner. Total Online Ownership.</h3>
+        <p>A single team that takes end-to-end ownership of your entire online presence. No handoffs, no silos, no gaps — you focus on ground operations, we handle everything digital.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>What We Do</span></div>
+    <h2 class="section-title">A Complete Online<br><em>Revenue Ecosystem</em></h2>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Revenue Management & Pricing</h3>
+      <p>Dynamic pricing strategies grounded in real-time competitive intelligence, demand forecasting, and market segmentation. We ensure your rooms are always priced to win — not just to fill.</p>
+      <div class="service-tag">Strategic Yield</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>OTA Management</h3>
+      <p>End-to-end presence management across Booking.com, Expedia, Agoda, and 15+ channels. Compelling content, rate parity enforcement, and inventory control — handled entirely by us.</p>
+      <div class="service-tag">15+ Channels</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3>Digital Marketing & SEO</h3>
+      <p>Search-first strategies, Google Ads, and Meta campaigns built around your property. We drive high-intent direct bookings so you rely less on OTAs and keep more of every reservation.</p>
+      <div class="service-tag">Direct Revenue</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <h3>Reputation Management</h3>
+      <p>Proactive review management across Google, TripAdvisor, and all OTA platforms. We monitor, respond, and build a review profile that converts browsers into confirmed guests.</p>
+      <div class="service-tag">Brand Trust</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <h3>GDS & CLC Distribution</h3>
+      <p>Strategic connectivity to Amadeus, Sabre, and Galileo, plus Corporate & Leisure Consortium programmes. Opens the door to corporate accounts, travel agencies, and global distribution networks.</p>
+      <div class="service-tag">Global Reach</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <h3>OTA Invoice Auditing</h3>
+      <p>Meticulous line-by-line auditing of your OTA commission invoices. Billing errors and overcharges are endemic in the industry — we find them and recover what is rightfully yours.</p>
+      <div class="service-tag">Cost Recovery</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">07</div>
+      <h3>Brand & Content Strategy</h3>
+      <p>Narrative-led content that captures the soul of your property — across your website, OTA listings, social media, and email. Great hotels deserve equally great storytelling.</p>
+      <div class="service-tag">Brand Voice</div>
+    </div>
+    <div class="service-card" style="background: rgba(184,154,94,0.06); border: 1px solid rgba(184,154,94,0.2);">
+      <div class="service-num" style="color: rgba(184,154,94,0.3); font-size: 3rem;">✦</div>
+      <h3>Full Revenue Partnership</h3>
+      <p>All seven services unified under one strategic engagement. We take complete ownership of your online business — so you can do what you do best: running an exceptional hotel and delivering unforgettable guest experiences.</p>
+      <div class="service-tag" style="color: var(--gold-light);">Signature Offering</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <span class="about-quote-mark">"</span>
+      <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>About Maximise360</span></div>
+      <h2 class="about-title">Built So You Can<br>Focus on What<br><em>Truly Matters.</em></h2>
+      <div class="about-divider"></div>
+      <div class="about-body">
+        <p>Maximise360 was founded on a singular belief: that every hotel deserves a revenue partner that matches their own standards of excellence — strategic, meticulous, and deeply invested in their success.</p>
+        <p>From independent boutiques to large resort chains, we take complete ownership of everything online — so hotel owners and operators can do what they do best: running an exceptional property and delivering unforgettable guest experiences.</p>
+        <p>You run the hotel. We handle everything online. Together, we build something extraordinary.</p>
+      </div>
+      <div style="margin-top: 2.5rem;">
+        <a class="btn-primary" href="#contact">Begin the Conversation</a>
+      </div>
+    </div>
+    <div class="about-right reveal">
+      <div class="about-stat-row">
+        <span class="about-stat-label">Properties Managed</span>
+        <div class="about-stat-val">40<span>+</span></div>
+      </div>
+      <div class="about-stat-row">
+        <span class="about-stat-label">Average RevPAR Increase</span>
+        <div class="about-stat-val">54<span>%</span></div>
+      </div>
+      <div class="about-stat-row">
+        <span class="about-stat-label">Years of Expertise</span>
+        <div class="about-stat-val">12<span>+</span></div>
+      </div>
+      <div class="about-stat-row">
+        <span class="about-stat-label">OTA Overcharges Recovered</span>
+        <div class="about-stat-val">$2.4<span>M+</span></div>
+      </div>
+      <div class="about-stat-row">
+        <span class="about-stat-label">Client Retention Rate</span>
+        <div class="about-stat-val">100<span>%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="reveal">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Case Studies</span></div>
+    <h2 class="section-title">Results That<br><em>Speak Clearly</em></h2>
+  </div>
+  <div class="results-grid reveal">
+    <div class="result-card">
+      <div class="result-location">Napa Valley, California</div>
+      <div class="result-hotel">The Vines Estate & Spa</div>
+      <div class="result-metrics">
+        <div><div class="metric-val">+74%</div><div class="metric-label">Revenue Growth</div></div>
+        <div><div class="metric-val">+48%</div><div class="metric-label">Direct Bookings</div></div>
+      </div>
+      <p class="result-desc">A complete revenue overhaul — OTA repositioning, dynamic pricing, and a direct booking campaign targeting luxury wine tourism. RevPAR reached record highs within 10 months.</p>
+    </div>
+    <div class="result-card">
+      <div class="result-location">Manhattan, New York</div>
+      <div class="result-hotel">The Meridian Boutique Hotel</div>
+      <div class="result-metrics">
+        <div><div class="metric-val">+61%</div><div class="metric-label">RevPAR Increase</div></div>
+        <div><div class="metric-val">4.9<span style="font-size:1.4rem">★</span></div><div class="metric-label">Review Score</div></div>
+      </div>
+      <p class="result-desc">GDS activation secured lucrative corporate accounts from Fortune 500 companies. Reputation management elevated their TripAdvisor ranking from #142 to #18 in New York City.</p>
+    </div>
+    <div class="result-card">
+      <div class="result-location">Aspen, Colorado</div>
+      <div class="result-hotel">Snowpeak Lodge & Residences</div>
+      <div class="result-metrics">
+        <div><div class="metric-val">-22%</div><div class="metric-label">OTA Commission</div></div>
+        <div><div class="metric-val">+105%</div><div class="metric-label">Peak Season ADR</div></div>
+      </div>
+      <p class="result-desc">Invoice auditing recovered $180K in overcharged OTA commissions. Seasonal pricing strategy more than doubled ADR during peak ski season while maintaining 96% occupancy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="reveal">
+      <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Get In Touch</span></div>
+      <h2 class="section-title">Let's Discuss<br>Your <em>Property</em></h2>
+      <p class="contact-info-text">Tell us about your hotel and we will put together a tailored online revenue strategy. No obligations — just clarity on what is possible when you have the right partner.</p>
+      <div class="contact-details">
+        <div class="contact-item"><div class="contact-item-dot"></div><span>hello@maximise360.com</span></div>
+        <div class="contact-item"><div class="contact-item-dot"></div><span>+1 (800) 555-0360</span></div>
+        <div class="contact-item"><div class="contact-item-dot"></div><span>United States · Serving Hotels Worldwide</span></div>
+      </div>
+    </div>
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Alexandra Whitmore" required>
+        </div>
+        <div class="form-group">
+          <label>Property Name</label>
+          <input type="text" placeholder="The Grand Estate" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="alex@thegrandestate.com" required>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="+1 (555) 000-0000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Service of Interest</label>
+        <select>
+          <option>Full Revenue Partnership (All Services)</option>
+          <option>Revenue Management & Pricing</option>
+          <option>OTA Management</option>
+          <option>Digital Marketing & SEO</option>
+          <option>Reputation Management</option>
+          <option>GDS & CLC Distribution</option>
+          <option>OTA Invoice Auditing</option>
+          <option>Brand & Content Strategy</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Us About Your Property</label>
+        <textarea placeholder="Number of rooms, property type, current challenges, goals..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Enquiry</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MAXIMISE<span>360</span></div>
+  <p>2025 Maximise360. All rights reserved.</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => obs.observe(r));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Enquiry Received';
+      btn.style.background = 'rgba(184,154,94,0.2)';
+      setTimeout(() => {
+        btn.textContent = 'Send Enquiry';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3500);
+    }, 1200);
+  }
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+      window.scrollY > 60 ? 'rgba(14,14,14,0.98)' : 'rgba(14,14,14,0.9)';
+  });
+</script>
+</body>
+</html>
